@@ -36,9 +36,9 @@ describe('Login Test Cases on ERM Project', () => {
         loginPage.clickLoginButton()
         dashboardPage.assertDashboard()
         dashboardPage.logout()
-         // Assert that the email input exists and contains the correct value
-    cy.get('#email').should('exist').and('have.value', validEmail)
-    cy.get('#formGroupExampleInput2').should('exist').and('have.value', validPassword)
+    // Assert that the email input exists and contains the correct value
+        cy.get('#email').should('exist').and('have.value', validEmail)
+        cy.get('#formGroupExampleInput2').should('exist').and('have.value', validPassword)
     })
 
     it('Verify login with invalid username', () => {
