@@ -22,7 +22,8 @@ describe('Login Test Cases on ERM Project', () => {
   })
 
   it('Verify login with "Remember Me" option & Logout', () => {
-    cy.login(validEmail, validPassword, true) // Passing true to check Remember Me
+    // Passing true to check Remember Me
+    cy.login(validEmail, validPassword, true) 
     cy.assertDashboard()
 
     // Log out
