@@ -62,7 +62,7 @@ class UserCreationPage {
     }
 
     selectRegion(region = 'Abuja - TSP') {
-        cy.get('select[formcontrolname="regionId"]').eq(0).select(region);
+        cy.get('select[formcontrolname="regionId"]',{ timeout: 30000 }).eq(0).select(region);
     }
 
     selectStation(station = 'Katampe_I_330kV_Trx._Station') {
