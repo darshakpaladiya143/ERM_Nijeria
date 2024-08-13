@@ -78,9 +78,9 @@ class UserCreationPage {
         cy.get('#add-UserModal .modal-footer .theme-primary').click();
     }
 
-    assertUserCreatedSuccessMessage(expectedText,timeouts=20000) {
-        cy.get('.swal2-popup',{timeouts}).should('be.visible');
-        cy.get('.swal2-popup .swal2-html-container',{timeouts}).should('have.text', expectedText);
+    assertUserCreatedSuccessMessage(expectedText,timeout=20000) {
+        cy.get('.swal2-popup',{timeout}).should('be.visible');
+        cy.get('.swal2-popup .swal2-html-container',{timeout}).should('have.text', expectedText);
         cy.get('.swal2-confirm').click();
     }
 }
