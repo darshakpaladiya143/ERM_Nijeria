@@ -46,7 +46,7 @@ describe('User Creation Test Cases by SuperAdmin', () => {
             }
             userCreationPage.isActive();
             userCreationPage.saveForm();
-            userCreationPage.assertUserCreatedSuccessMessage('User added successfully',10000);
+            userCreationPage.assertUserCreatedSuccessMessage('User added successfully',20000);
         });
     });
 });

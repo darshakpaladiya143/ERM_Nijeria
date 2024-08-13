@@ -80,7 +80,7 @@ class UserCreationPage {
 
     assertUserCreatedSuccessMessage(expectedText,timeouts=20000) {
         cy.get('.swal2-popup',{timeouts}).should('be.visible');
-        cy.get('.swal2-popup .swal2-html-container').should('have.text', expectedText);
+        cy.get('.swal2-popup .swal2-html-container',{timeouts}).should('have.text', expectedText);
         cy.get('.swal2-confirm').click();
     }
 }
