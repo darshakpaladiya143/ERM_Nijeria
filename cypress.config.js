@@ -11,7 +11,7 @@ export default defineConfig({
       return config;
     },
     env: {
-      URL: 'http://clientapp.narola.online:1180/login'
+      URL: 'http://clientapp.narola.online:1196/login'
     }
   },
 });

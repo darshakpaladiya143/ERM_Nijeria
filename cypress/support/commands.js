@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 // commands.js
+
 Cypress.Commands.add('login', (email, password, rememberMe = false) => {
     cy.get('#email').type(email)
     cy.get('#formGroupExampleInput2').type(password)
@@ -56,4 +57,22 @@ Cypress.Commands.add('login', (email, password, rememberMe = false) => {
     cy.get(':nth-child(4) > .dropdown-item').click()
     cy.get('a').contains('LOG IN').should('be.visible').click()
   })
-  
+
+  Cypress.Commands.add('setCkEditorContent', (editorSelector, content) => {
+    cy.window().then((win) => {
+        // Make sure CKEditor 5 is correctly referenced
+        if (win.ClassicEditor) {
+            win.ClassicEditor
+                .create(document.querySelector(editorSelector))
+                .then((editor) => {
+                    editor.setData(content);
+                })
+                .catch((error) => {
+                    cy.log('Error:', error);
+                });
+        } else {
+            cy.log('ClassicEditor is not defined');
+        }
+    });
+});
+

@@ -1,6 +1,6 @@
 class LoginPage {
   visit() {
-      cy.visit('http://clientapp.narola.online:1180/login')
+      cy.visit('http://clientapp.narola.online:1196/login')
   }
 
   enterEmail(email) {

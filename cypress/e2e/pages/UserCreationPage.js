@@ -1,6 +1,6 @@
 class UserCreationPage {
     visit() {
-        cy.visit('http://clientapp.narola.online:1180/login'); // Base URL should be set in Cypress config
+        cy.visit('http://clientapp.narola.online:1196/login'); // Base URL should be set in Cypress config
     }
 
     loginSuperAdmin(email = 'johndoe@yopmail.com', password = 'Password123!'){
