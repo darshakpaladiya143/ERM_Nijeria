@@ -1,4 +1,5 @@
 import CreateMemoPage from '../pages/CreateMemoPage';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 describe('Head of risk can create memo into the ERM Project', () => {
 
@@ -19,7 +20,7 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.subject();
         // createMemoPage.description();
         const contentToSet = 'This is a test content for CKEditor.';
-        cy.setCkEditorContent('Remark', contentToSet);
+        cy.setCkEditorContent("div[contenteditable='true']", contentToSet);
         createMemoPage.riskRegisterTemplate();
         createMemoPage.selectTreatment();
         createMemoPage.selectIncident();
