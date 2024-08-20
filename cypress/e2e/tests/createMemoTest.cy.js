@@ -17,9 +17,22 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.riskSubmissionEndDate();
         createMemoPage.riskReportSubmissionDate();
         createMemoPage.subject();
-        // createMemoPage.description();
         const contentToSet = 'This is a test content for CKEditor.';
-        cy.setCkEditorContent("div[contenteditable='true']", contentToSet);
+
+        // Set content in CKEditor
+        cy.setCkEditorContent('.ck-editor', contentToSet);
+
+        // Verify the content
+        cy.window().then((win) => {
+            const editor = win.editorInstances && win.editorInstances['.ck-editor'];
+
+            if (editor) {
+                const editorData = editor.getData();
+                expect(editorData).to.equal(contentToSet);
+            } else {
+                throw new Error('CKEditor instance not found in window');
+            }
+        });
         createMemoPage.riskRegisterTemplate();
         createMemoPage.selectTreatment();
         createMemoPage.selectIncident();
