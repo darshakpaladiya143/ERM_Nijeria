@@ -59,6 +59,7 @@ Cypress.Commands.add('login', (email, password, rememberMe = false) => {
   })
 
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  
     Cypress.Commands.add('setCkEditorContent', (editorSelector, content) => {
     cy.window().then((win) => {
         // Make sure CKEditor 5 is correctly referenced

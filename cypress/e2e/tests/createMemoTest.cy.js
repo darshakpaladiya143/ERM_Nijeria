@@ -1,5 +1,4 @@
 import CreateMemoPage from '../pages/CreateMemoPage';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 describe('Head of risk can create memo into the ERM Project', () => {
 
