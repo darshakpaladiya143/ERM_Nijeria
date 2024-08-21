@@ -60,23 +60,20 @@ Cypress.Commands.add('login', (email, password, rememberMe = false) => {
 // Custom command to set content in CKEditor
 import './ckeditor-instance';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+Cypress.Commands.add('initializeCkEditor', (editorSelector) => {
+  cy.window().then((win) => {
+    // Assuming the editor instance is exposed on the window object
+    if (win.editorInstance) {
+      return cy.wrap(win.editorInstance);
+    }
 
-Cypress.Commands.add('setCkEditorContent', (editorSelector, content) => {
-  cy.get(editorSelector, { timeout: 10000 }) // Wait for the editor to be visible
-    .should('exist')
-    .then((editorElement) => {
-      // Initialize CKEditor on the editor element
-      ClassicEditor.create(editorElement)
-        .then((editor) => {
-          // Save the editor instance to the window object
-          cy.window().then((win) => {
-            win.editorInstance = editor;
-            // Set the content in CKEditor
-            editor.setData(content);
-          });
-        })
-        .catch((error) => {
-          cy.log('Error initializing CKEditor:', error);
-        });
+    return cy.document().then((doc) => {
+      const editorElement = doc.querySelector(editorSelector);
+      return ClassicEditor.create(editorElement).then(editor => {
+        win.editorInstance = editor;
+        return cy.wrap(editor);
+      });
     });
+  });
 });
+
