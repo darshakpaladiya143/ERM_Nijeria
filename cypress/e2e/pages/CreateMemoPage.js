@@ -63,9 +63,6 @@ class CreateMemoPage {
         cy.get('textarea[placeholder="Enter Subject.."]').type('Memo Concerning Operational Risk Management for Q3 - Strategic Decision Needed');
     }
 
-    description() {
-    }    
-
     riskRegisterTemplate(){
         cy.get('#mat-input-0').click()
         cy.contains('span.mdc-list-item__primary-text', 'Risk Register Template').click();
@@ -94,6 +91,10 @@ class CreateMemoPage {
     saveForm() {
         cy.get('.btn-wrapper > .theme-primary').click({multiple:true});
 
+    }
+
+    removeValidationMsg(){
+        cy.get('.text-danger.ng-star-inserted').invoke('remove');
     }
 
     assertUserCreatedSuccessMessage(expectedText, timeout = 20000) {

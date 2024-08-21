@@ -20,6 +20,8 @@ describe('Head of risk can create memo into the ERM Project', () => {
         
         cy.initializeCkEditor('.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred').then((editor) => {
             editor.setData('Your content here');
+
+            cy.wait(5000)
       
             // Optionally, verify content
             cy.wrap(editor.getData()).then((html) => {
@@ -34,6 +36,9 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.selectRiskIdentification();
         createMemoPage.sendTo();
         createMemoPage.saveForm();
+        // createMemoPage.removeValidationMsg();
+        createMemoPage.saveForm();
+
     })
 
 })
