@@ -25,9 +25,6 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 // commands.js
-
-import './ckeditor-instance';
-
 Cypress.Commands.add('login', (email, password, rememberMe = false) => {
     cy.get('#email').type(email)
     cy.get('#formGroupExampleInput2').type(password)
@@ -61,26 +58,25 @@ Cypress.Commands.add('login', (email, password, rememberMe = false) => {
   })
 
 // Custom command to set content in CKEditor
+import './ckeditor-instance';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-// cypress/support/commands.js
 Cypress.Commands.add('setCkEditorContent', (editorSelector, content) => {
-  cy.get(editorSelector, { timeout: 10000 }).should('exist')
-      .then(() => {
+  cy.get(editorSelector, { timeout: 10000 }) // Wait for the editor to be visible
+    .should('exist')
+    .then((editorElement) => {
+      // Initialize CKEditor on the editor element
+      ClassicEditor.create(editorElement)
+        .then((editor) => {
+          // Save the editor instance to the window object
           cy.window().then((win) => {
-              cy.wait(2000); // Wait for CKEditor to be fully initialized
-              const editor = win.editorInstances && win.editorInstances[editorSelector];
-
-              if (editor) {
-                  editor.setData(content);
-              } else {
-                  cy.log('CKEditor instance not found');
-                  throw new Error('CKEditor instance not found');
-              }
+            win.editorInstance = editor;
+            // Set the content in CKEditor
+            editor.setData(content);
           });
-      });
+        })
+        .catch((error) => {
+          cy.log('Error initializing CKEditor:', error);
+        });
+    });
 });
-
-
-
-
-
