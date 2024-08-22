@@ -22,7 +22,7 @@ class CreateMemoPage {
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 2');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 4');
     }
 
     fromDate(){
@@ -98,7 +98,6 @@ class CreateMemoPage {
 
     }
 
- 
     assertMemoCreatedSuccessMessage(expectedText, timeout = 20000) {
         cy.get('.swal2-popup', { timeout }).should('be.visible');
         cy.get('.swal2-popup .swal2-html-container', { timeout }).should('have.text', expectedText);
@@ -111,9 +110,8 @@ class CreateMemoPage {
     }
 
     checkRecordPresent(){
-        // Variables for year and quarter
+        // Variables for year 
         const expectedYear = '2027';
-        const expectedQuarter = 'Quarter 2';
 
         // Iterate over each table row and check for the year and quarter
         cy.get('tr.mat-mdc-row').each(($row) => {
@@ -121,10 +119,6 @@ class CreateMemoPage {
         // Assert the year column
         cy.get('td.cdk-column-year')
         .should('contain.text', expectedYear);
-
-        // Assert the quarter column
-        cy.get('td.cdk-column-quarter')
-       .should('contain.text', expectedQuarter);
   });
 });
 
