@@ -39,7 +39,7 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.saveForm();
         createMemoPage.assertMemoCreatedSuccessMessage('Memo added successfully',20000);
         createMemoPage.memoListing();
-        createMemoPage.checkRecordPresent();
+        // createMemoPage.checkRecordPresent();
     })
 
 

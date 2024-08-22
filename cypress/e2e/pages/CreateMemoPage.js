@@ -18,11 +18,11 @@ class CreateMemoPage {
     selectYear(){
         cy.get('#year').click();
         cy.get('.datepicker').should('be.visible');
-        cy.get('.datepicker-years').contains('2026').click();
+        cy.get('.datepicker-years').contains('2027').click();
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 4');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 1');
     }
 
     fromDate(){
@@ -112,21 +112,22 @@ class CreateMemoPage {
 
     checkRecordPresent(){
         // Variables for year and quarter
-        const expectedYear = '2026';
-        const expectedQuarter = 'Quarter 4';
+        const expectedYear = '2027';
+        const expectedQuarter = 'Quarter 1';
 
-       // Get the table row containing the memo you want to assert
-        cy.get('tr.mat-mdc-row')
-        .should('be.visible') // Ensure the row is visible
-        .within(() => {
-      // Assert the year column
+        // Iterate over each table row and check for the year and quarter
+        cy.get('tr.mat-mdc-row').each(($row) => {
+        cy.wrap($row).within(() => {
+        // Assert the year column
         cy.get('td.cdk-column-year')
-       .should('contain.text', expectedYear);
+        .should('contain.text', expectedYear);
 
-    // Assert the quarter column
-       cy.get('td.cdk-column-quarter')
+        // Assert the quarter column
+        cy.get('td.cdk-column-quarter')
        .should('contain.text', expectedQuarter);
   });
+});
+
 
     }
 }
