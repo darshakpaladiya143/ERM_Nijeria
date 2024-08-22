@@ -22,7 +22,7 @@ class CreateMemoPage {
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 4');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 2');
     }
 
     fromDate(){
@@ -95,7 +95,6 @@ class CreateMemoPage {
 
     saveForm() {
         cy.get('.btn-wrapper > .theme-primary').click({multiple:true});
-
     }
 
     assertMemoCreatedSuccessMessage(expectedText, timeout = 20000) {
@@ -109,20 +108,20 @@ class CreateMemoPage {
         cy.wait(6000)
     }
 
-    checkRecordPresent(){
-        // Variables for year 
-        const expectedYear = '2027';
+    loginwithMD(email = 'davidjones@yopmail.com', password = 'Password123!'){
+        cy.get('#email').type(email);
+        cy.get('#formGroupExampleInput2').type(password);
+        cy.get('.btn').click();
+        cy.wait(5000); 
+    }
 
-        // Iterate over each table row and check for the year and quarter
-        cy.get('tr.mat-mdc-row').each(($row) => {
-        cy.wrap($row).within(() => {
-        // Assert the year column
-        cy.get('td.cdk-column-year')
-        .should('contain.text', expectedYear);
-  });
-});
-
-
+    memolink(){
+        cy.get('a.nav-link.active[href="/ERM/memocreation"]').click();
+        cy.get('table') // Select the table element
+        .find('tr') // Find all rows within the table
+        .eq(1) // Select the first row after the header row (assuming the first row is the data row)
+        .find('a.view-item') // Find the 'view-item' anchor tag within the first row
+        .click(); // Click on the anchor tag
     }
 }
 

@@ -6,11 +6,11 @@ describe('Head of risk can create memo into the ERM Project', () => {
 
     beforeEach(() => {
         createMemoPage.visit()
-        createMemoPage.loginSuperAdmin()
-        createMemoPage.navigateToCreateMemoPage()
     })
 
-    it('Fill the memo form with all necessary details',() => {
+    it('Fill the memo form with all necessary details to create memo',() => {
+        createMemoPage.loginSuperAdmin();
+        createMemoPage.navigateToCreateMemoPage();
         createMemoPage.selectYear();
         createMemoPage.selectQuater();
         createMemoPage.fromDate();
@@ -41,6 +41,13 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.memoListing();
         createMemoPage.checkRecordPresent();
     })
+
+    it('Login with the MD account to view and approve that request',() => {
+        createMemoPage.loginwithMD();
+        createMemoPage.memolink();
+    })
+ 
+
 
 
 })
