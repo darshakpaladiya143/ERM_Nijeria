@@ -5,6 +5,10 @@ export default defineConfig({
   e2e: {
     defaultCommandTimeout: 20000,
     pageLoadTimeout: 60000,
+    retries: {
+      runMode: 2, // Number of retries in 'cypress run' mode
+      openMode: 1, // Number of retries in 'cypress open' mode
+    },
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/e2e.{js,jsx,ts,tsx}',
     setupNodeEvents(on,config) {

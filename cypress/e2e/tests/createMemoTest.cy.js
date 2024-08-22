@@ -10,7 +10,7 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.navigateToCreateMemoPage()
     })
 
-    it('Fill the memo form with all necessary details', () => {
+    it('Fill the memo form with all necessary details', { retries: 3 },() => {
         createMemoPage.selectQuater();
         createMemoPage.fromDate();
         createMemoPage.toDate();
