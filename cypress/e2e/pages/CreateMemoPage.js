@@ -115,8 +115,12 @@ class CreateMemoPage {
         cy.wait(5000); 
     }
 
-    memolink(){
-        cy.get('a.nav-link.active[href="/ERM/memocreation"]').click();
+    memoLink(){
+        cy.get('#sidemenu-ul > :nth-child(2) > .nav-link').click();
+    }
+
+    ViewMemo(){
+        cy.get('a.view-item[data-bs-target="#view-memoModal"]').first().click();
         cy.get('table') // Select the table element
         .find('tr') // Find all rows within the table
         .eq(1) // Select the first row after the header row (assuming the first row is the data row)

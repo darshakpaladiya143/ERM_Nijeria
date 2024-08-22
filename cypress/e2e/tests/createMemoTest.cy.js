@@ -43,7 +43,8 @@ describe('Head of risk can create memo into the ERM Project', () => {
 
     it('Login with the MD account to view and approve that request',() => {
         createMemoPage.loginwithMD();
-        createMemoPage.memolink();
+        createMemoPage.memoLink();
+        createMemoPage.ViewMemo();
     })
  
 
