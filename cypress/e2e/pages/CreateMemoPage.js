@@ -22,7 +22,7 @@ class CreateMemoPage {
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 2');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 3');
     }
 
     fromDate(){
@@ -112,7 +112,7 @@ class CreateMemoPage {
     checkRecordPresent(){
         // Variables for year and quarter
         const expectedYear = '2026';
-        const expectedQuarter = 'Quarter 2';
+        const expectedQuarter = 'Quarter 3';
 
        // Get the table row containing the memo you want to assert
         cy.get('tr.mat-mdc-row')
