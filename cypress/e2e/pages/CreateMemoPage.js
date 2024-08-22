@@ -22,7 +22,7 @@ class CreateMemoPage {
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 1');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 2');
     }
 
     fromDate(){
@@ -113,7 +113,7 @@ class CreateMemoPage {
     checkRecordPresent(){
         // Variables for year and quarter
         const expectedYear = '2027';
-        const expectedQuarter = 'Quarter 1';
+        const expectedQuarter = 'Quarter 2';
 
         // Iterate over each table row and check for the year and quarter
         cy.get('tr.mat-mdc-row').each(($row) => {
