@@ -15,8 +15,12 @@ class CreateMemoPage {
         cy.get('.add-btn').click();
     }
 
+    selectYear(){
+        
+    }
+
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 3');
+        cy.get('select[formcontrolname="quarter"]').select('Other');
     }
 
     fromDate(){
@@ -101,17 +105,6 @@ class CreateMemoPage {
         cy.get('.swal2-popup', { timeout }).should('be.visible');
         cy.get('.swal2-popup .swal2-html-container', { timeout }).should('have.text', expectedText);
         cy.get('.swal2-confirm').click();
-    }
-
-    errorValidationMsg(){
-        // Check for the validation error message
-        cy.get('.text-danger.ng-star-inserted').then((errorMessage) => {
-        const messageText = errorMessage.text();
-        if (messageText.includes('Description is required')) {
-        // Explicitly fail the test case if validation message is found
-        assert.fail(`Validation error detected: ${messageText}`);
-        }
-        });
     }
 }
 

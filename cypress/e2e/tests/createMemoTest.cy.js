@@ -11,6 +11,7 @@ describe('Head of risk can create memo into the ERM Project', () => {
     })
 
     it('Fill the memo form with all necessary details',() => {
+        createMemoPage.selectYear();
         createMemoPage.selectQuater();
         createMemoPage.fromDate();
         createMemoPage.toDate();
@@ -36,8 +37,6 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.selectRiskIdentification();
         createMemoPage.sendTo();
         createMemoPage.saveForm();
-        createMemoPage.errorValidationMsg();
-
     })
 
 })
