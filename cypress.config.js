@@ -7,7 +7,7 @@ export default defineConfig({
     pageLoadTimeout: 60000,
     retries: {
       // runMode: 3, 
-      openMode: 3, 
+      openMode: 2, 
     },
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/e2e.{js,jsx,ts,tsx}',

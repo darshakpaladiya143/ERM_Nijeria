@@ -16,7 +16,9 @@ class CreateMemoPage {
     }
 
     selectYear(){
-        
+        cy.get('#year').click();
+        cy.get('.datepicker').should('be.visible');
+        cy.get('.datepicker-years').contains('2026').click();
     }
 
     selectQuater(){
@@ -97,11 +99,8 @@ class CreateMemoPage {
 
     }
 
-    removeValidationMsg(){
-        cy.get('.text-danger.ng-star-inserted').invoke('remove');
-    }
-
-    assertUserCreatedSuccessMessage(expectedText, timeout = 20000) {
+ 
+    assertMemoCreatedSuccessMessage(expectedText, timeout = 20000) {
         cy.get('.swal2-popup', { timeout }).should('be.visible');
         cy.get('.swal2-popup .swal2-html-container', { timeout }).should('have.text', expectedText);
         cy.get('.swal2-confirm').click();
