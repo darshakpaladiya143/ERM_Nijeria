@@ -22,7 +22,7 @@ class CreateMemoPage {
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Other');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 2');
     }
 
     fromDate(){
@@ -41,13 +41,12 @@ class CreateMemoPage {
         cy.get('#riskSubmissionEndDate').click();
         cy.wait(1000); 
         this.checkSeptemberAndSelect();
-        // cy.get('#riskSubmissionEndDate').should('have.value', '2024-09-25');
     }
 
     checkSeptemberAndSelect() {
         cy.log('Checking month...');
         cy.get('.datepicker-switch', { timeout: 10000 }).should('be.visible').then(($month) => {
-            cy.log(`Month found: ${$month.text()}`);
+        cy.log(`Month found: ${$month.text()}`);
             if (!$month.text().includes('September 2024')) {
                 cy.get('.datepicker-days .next').click();
                 cy.wait(500);
@@ -104,6 +103,30 @@ class CreateMemoPage {
         cy.get('.swal2-popup', { timeout }).should('be.visible');
         cy.get('.swal2-popup .swal2-html-container', { timeout }).should('have.text', expectedText);
         cy.get('.swal2-confirm').click();
+    }
+
+    memoListing(){
+        cy.get(':nth-child(8) > .nav-link').click();
+    }
+
+    checkRecordPresent(){
+        // Variables for year and quarter
+        const expectedYear = '2026';
+        const expectedQuarter = 'Quarter 2';
+
+       // Get the table row containing the memo you want to assert
+        cy.get('tr.mat-mdc-row')
+        .should('be.visible') // Ensure the row is visible
+        .within(() => {
+      // Assert the year column
+        cy.get('td.cdk-column-year')
+       .should('contain.text', expectedYear);
+
+    // Assert the quarter column
+       cy.get('td.cdk-column-quarter')
+       .should('contain.text', expectedQuarter);
+  });
+
     }
 }
 

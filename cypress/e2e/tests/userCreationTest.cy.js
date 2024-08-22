@@ -46,10 +46,6 @@ describe('User Creation Test Cases by SuperAdmin', () => {
             }
             userCreationPage.isActive();
             userCreationPage.saveForm();
-            // cy.wait('@createUser').its('response.statusCode').should('eq', 200);
-            // cy.get('.swal2-popup').should('be.visible');
-            // cy.get('.swal2-html-container').should('have.text', 'User added successfully');
-            // cy.get('.swal2-confirm').click();
             userCreationPage.assertUserCreatedSuccessMessage('User added successfully',20000);
         });
     });
