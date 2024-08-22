@@ -36,8 +36,7 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.selectRiskIdentification();
         createMemoPage.sendTo();
         createMemoPage.saveForm();
-        // createMemoPage.removeValidationMsg();
-        createMemoPage.saveForm();
+        createMemoPage.errorValidationMsg();
 
     })
 
