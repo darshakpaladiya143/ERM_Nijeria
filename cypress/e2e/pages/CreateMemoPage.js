@@ -18,11 +18,11 @@ class CreateMemoPage {
     selectYear(){
         cy.get('#year').click();
         cy.get('.datepicker').should('be.visible');
-        cy.get('.datepicker-years').contains('2025').click();
+        cy.get('.datepicker-years').contains('2028').click();
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 4');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 2');
     }
 
     fromDate(){
@@ -134,7 +134,7 @@ class CreateMemoPage {
 
     ViewMemo(){
         // Step 1: Click the 'view-item' link to open the modal
-        cy.get('a.view-item[data-bs-target="#view-memoModal"]').first().click();
+        cy.get('.view-item').first().click();
 
        // Step 3: Click the 'Approve' button inside the modal
         cy.get('button.theme-btn.approve-btn').should('be.visible').click();
