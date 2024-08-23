@@ -19,11 +19,10 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.subject();
         
         cy.initializeCkEditor('.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred').then((editor) => {
-            editor.setData('Your content here');
+        editor.setData('Your content here');
 
         cy.wait(2000)
       
-        // Optionally, verify content
         cy.wrap(editor.getData()).then((html) => {
                 const textContent = html.replace(/<[^>]*>/g, ''); // Remove HTML tags
                 expect(textContent).to.equal('Your content here');
@@ -47,8 +46,5 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.memoLink();
         createMemoPage.ViewMemo();
     })
- 
-
-
 
 })

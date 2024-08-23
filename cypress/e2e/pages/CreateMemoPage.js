@@ -1,3 +1,4 @@
+import 'cypress-wait-until';
 class CreateMemoPage {
     visit() {
         cy.visit('http://clientapp.narola.online:1196/login'); // Base URL should be set in Cypress config
@@ -22,7 +23,7 @@ class CreateMemoPage {
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 2');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 4');
     }
 
     fromDate(){
@@ -105,14 +106,9 @@ class CreateMemoPage {
 
     submitToMd(){
         cy.get('button.theme-btn.theme-secondary2[data-bs-target="#view-memoModal"]').click();
-
-        // Step 2: Wait for the modal to be visible
         cy.get('#view-memoModal').should('be.visible');
-    
-        // Step 3: Interact with elements inside the modal
-        // For example, click the 'Send' button inside the modal
-        cy.get('#view-memoModal')  // Ensure you are working within the modal
-          .find('button:contains("Send")')  // Adjust the selector as needed
+        cy.get('#view-memoModal') 
+          .find('button:contains("Send")')  
           .click();
     }
 
@@ -133,11 +129,13 @@ class CreateMemoPage {
     }
 
     ViewMemo(){
-        // Step 1: Click the 'view-item' link to open the modal
         cy.get('.view-item').first().click();
+        cy.waitUntil(() => cy.get('.approve-btn').should('be.visible'))
+       .then(() => {
+         cy.get('.approve-btn').click();
+       });
 
-       // Step 3: Click the 'Approve' button inside the modal
-        cy.get('button.theme-btn.approve-btn').should('be.visible').click();
+
     }
 
     }
