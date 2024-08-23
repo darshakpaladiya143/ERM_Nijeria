@@ -18,11 +18,11 @@ class CreateMemoPage {
     selectYear(){
         cy.get('#year').click();
         cy.get('.datepicker').should('be.visible');
-        cy.get('.datepicker-years').contains('2027').click();
+        cy.get('.datepicker-years').contains('2025').click();
     }
 
     selectQuater(){
-        cy.get('select[formcontrolname="quarter"]').select('Quarter 2');
+        cy.get('select[formcontrolname="quarter"]').select('Quarter 4');
     }
 
     fromDate(){
@@ -103,6 +103,19 @@ class CreateMemoPage {
         cy.get('.swal2-confirm').click();
     }
 
+    submitToMd(){
+        cy.get('button.theme-btn.theme-secondary2[data-bs-target="#view-memoModal"]').click();
+
+        // Step 2: Wait for the modal to be visible
+        cy.get('#view-memoModal').should('be.visible');
+    
+        // Step 3: Interact with elements inside the modal
+        // For example, click the 'Send' button inside the modal
+        cy.get('#view-memoModal')  // Ensure you are working within the modal
+          .find('button:contains("Send")')  // Adjust the selector as needed
+          .click();
+    }
+
     memoListing(){
         cy.get(':nth-child(8) > .nav-link').click();
         cy.wait(6000)
@@ -120,13 +133,14 @@ class CreateMemoPage {
     }
 
     ViewMemo(){
+        // Step 1: Click the 'view-item' link to open the modal
         cy.get('a.view-item[data-bs-target="#view-memoModal"]').first().click();
-        cy.get('table') // Select the table element
-        .find('tr') // Find all rows within the table
-        .eq(1) // Select the first row after the header row (assuming the first row is the data row)
-        .find('a.view-item') // Find the 'view-item' anchor tag within the first row
-        .click(); // Click on the anchor tag
+
+       // Step 3: Click the 'Approve' button inside the modal
+        cy.get('button.theme-btn.approve-btn').should('be.visible').click();
     }
-}
+
+    }
+
 
 export default CreateMemoPage;

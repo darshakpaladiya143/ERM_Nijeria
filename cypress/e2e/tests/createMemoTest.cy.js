@@ -1,7 +1,6 @@
 import CreateMemoPage from '../pages/CreateMemoPage';
 
 describe('Head of risk can create memo into the ERM Project', () => {
-
     const createMemoPage = new CreateMemoPage()
 
     beforeEach(() => {
@@ -38,6 +37,8 @@ describe('Head of risk can create memo into the ERM Project', () => {
         createMemoPage.sendTo();
         createMemoPage.saveForm();
         createMemoPage.assertMemoCreatedSuccessMessage('Memo added successfully',20000);
+        createMemoPage.submitToMd();
+        createMemoPage.assertMemoCreatedSuccessMessage('Email sent successfully.');
         createMemoPage.memoListing();
     })
 
