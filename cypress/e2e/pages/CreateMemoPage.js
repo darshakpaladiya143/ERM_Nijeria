@@ -128,7 +128,7 @@ class CreateMemoPage {
         cy.get('#sidemenu-ul > :nth-child(2) > .nav-link').click();
     }
 
-    ViewMemo(){
+    viewMemo(){
         cy.get('.view-item').first().click();
         cy.waitUntil(() => cy.get('.approve-btn').should('be.visible'))
        .then(() => {
