@@ -15,7 +15,7 @@ describe('Raised risk by riskChampion & Verify that risk showing into the GM lis
             }
         });
 
-    it('Fill the detail into the Risk Identification form & Save', () => {
+    it('Fill the detail into the Risk Identification form , save and doing filter on it', () => {
         riskIdentificationPage.loginRiskOfficer();
         riskIdentificationPage.navigateToRiskIdenfication();
         riskIdentificationPage.addRiskIdentificationButton();
@@ -32,6 +32,10 @@ describe('Raised risk by riskChampion & Verify that risk showing into the GM lis
         riskIdentificationPage.enterRemark();
         riskIdentificationPage.saveButton();
         riskIdentificationPage.assertMemoCreatedSuccessMessage('Risk register added successfully',20000);
+        riskIdentificationPage.clickFilter();
+        riskIdentificationPage.selectDate();
+        riskIdentificationPage.applyButton();
+        riskIdentificationPage.plusListing();
     })
 
 })

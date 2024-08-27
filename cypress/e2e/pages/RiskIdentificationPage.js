@@ -77,11 +77,27 @@ class RiskIdentification{
         cy.get('.swal2-popup .swal2-html-container', { timeout }).should('have.text', expectedText);
         cy.get('.swal2-confirm').click();
     }
-    
 
+    clickFilter(){
+        cy.get('#dropdown-Modal').click();
+    }
 
+    selectDate(){
+        cy.get('#year').click();
+        cy.contains('.year', '2024').click();
+    }
 
+    applyButton(){
+        cy.contains('button', 'Apply').click();
+    }
 
+    plusListing(){
+        cy.get('.td-plus').click();
+        // cy.get('tr').eq(12).find('td.mat-mdc-cell.cdk-column-categoryName')
+        // .contains('Reputation and Branding')
+        // .should('exist');
+
+    }
 
 }
 
