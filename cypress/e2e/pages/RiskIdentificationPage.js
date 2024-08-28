@@ -95,14 +95,7 @@ class RiskIdentification{
         // Step 1: Click the button to load the data table
         cy.get('.td-plus').click(); // Click to display the table
 
-        // Step 2: Wait for the Angular app to stabilize
-        cy.window().its('angular').then(angular => {
-        const injector = angular.element(document.body).injector();
-        const $http = injector.get('$http');
-        cy.wrap($http.pendingRequests).should('have.length', 0); // Wait until all HTTP requests are completed
-    });
-
-        // Step 3: Now perform the assertions once the app is stable
+        // Step 2: Now perform the assertions once the app is stable
         cy.get('tr', { timeout: 30000 })
         .contains('td', 'Reputation and Branding')
         .should('be.visible')
@@ -126,7 +119,7 @@ class RiskIdentification{
       .should('contain.text', 'Pending');
   });
 
-      // Step 4: Debugging - Click on the 'edit-item' link in that specific row
+      // Step 3: Debugging - Click on the 'edit-item' link in that specific row
        cy.get('tr')
       .contains('td', 'Reputation and Branding')
       .then($row => {
