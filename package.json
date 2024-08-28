@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.13.2"
+    "cypress": "^13.13.2",
+    "cypress-angular-unit-test": "^3.9.0"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^43.0.0",

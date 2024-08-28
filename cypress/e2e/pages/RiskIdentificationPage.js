@@ -88,17 +88,57 @@ class RiskIdentification{
     }
 
     applyButton(){
-        cy.contains('button', 'Apply').click();
+        cy.contains('button', 'Apply').click({force:true});
     }
 
     plusListing(){
-        cy.get('.td-plus').click();
-        // cy.get('tr').eq(12).find('td.mat-mdc-cell.cdk-column-categoryName')
-        // .contains('Reputation and Branding')
-        // .should('exist');
+        // Step 1: Click the button to load the data table
+        cy.get('.td-plus').click(); // Click to display the table
+
+        // Step 2: Wait for the Angular app to stabilize
+        cy.window().its('angular').then(angular => {
+        const injector = angular.element(document.body).injector();
+        const $http = injector.get('$http');
+        cy.wrap($http.pendingRequests).should('have.length', 0); // Wait until all HTTP requests are completed
+    });
+
+        // Step 3: Now perform the assertions once the app is stable
+        cy.get('tr', { timeout: 30000 })
+        .contains('td', 'Reputation and Branding')
+        .should('be.visible')
+        .then($row => {
+       // Assert for 'Reputation and Branding' in the correct column
+        cy.wrap($row)
+       .find('td.cdk-column-categoryName')
+       .should('be.visible')
+       .should('contain.text', 'Reputation and Branding');
+
+       // Assert that the remark column contains the correct text
+       cy.wrap($row)
+      .find('td.cdk-column-remark', { timeout: 30000 })
+      .should('be.visible')
+      .should('contain.text', 'Your remark goes here...');
+
+       // Assert for the status in the correct column
+       cy.wrap($row)
+      .find('td.cdk-column-status')
+      .should('be.visible')
+      .should('contain.text', 'Pending');
+  });
+
+      // Step 4: Debugging - Click on the 'edit-item' link in that specific row
+       cy.get('tr')
+      .contains('td', 'Reputation and Branding')
+      .then($row => {
+      cy.log($row.html());
+      cy.wrap($row).debug();
+      cy.wrap($row)
+      .find('a.edit-item', { timeout: 30000 })
+      .should('be.visible')
+      .click();
+    });
 
     }
 
 }
-
 export default RiskIdentification;
